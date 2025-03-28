@@ -56,6 +56,28 @@ fn typed_example() -> Result<()> {
     Ok(())
 }
 
+#[derive(Serialize, Deserialize)]
+struct Address {
+    street: String,
+    city: String,
+}
+
+fn print_an_address() -> Result<()> {
+    // Some data structure
+    let address = Address {
+        street: "10 Downing Street".to_owned(),
+        city: "London".to_owned(),
+    };
+
+    // Serialize it to a JSON string
+    let j = serde_json::to_string(&address)?;
+
+    // Print, write to a file, or send to an HTTP server
+    println!("{}", j);
+
+    Ok(())
+}
+
 fn construct_json() {
     // the type of `john` is `serde_json::Value`
     let john = json!({
@@ -70,11 +92,12 @@ fn construct_json() {
     println!("first phone number: {}", john["phones"][0]);
 
     // Convert to a string of JSON and print it out
-    println!("{}", john.to_string());
+    println!("{}", john);
 }
 
 fn main() {
     let _ = untyped_example();
     let _ = typed_example();
     construct_json();
+    let _ = print_an_address();
 }
