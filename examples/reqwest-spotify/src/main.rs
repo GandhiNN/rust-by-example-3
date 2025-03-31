@@ -66,7 +66,7 @@ async fn main() {
 
     match response.status() {
         reqwest::StatusCode::OK => {
-            println!("{:#?}", response);
+            println!("{:#?}", response.json::<serde_json::Value>().await);
         }
         _ => {
             panic!("Something unexpected happened");
