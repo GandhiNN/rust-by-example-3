@@ -1,6 +1,9 @@
 use base64::engine::Engine as _;
 use base64::engine::general_purpose::STANDARD as BASE64;
-use reqwest::{self};
+use reqwest::{
+    self,
+    header::{ACCEPT, AUTHORIZATION, CONTENT_TYPE},
+};
 use serde::Deserialize;
 
 const CLIENT_ID: &str = "8dcf83db60d94d638572e591695c5945";
@@ -34,26 +37,39 @@ async fn get_token() -> Result<String, Box<dyn std::error::Error>> {
 
 #[tokio::main]
 async fn main() {
-    // let client = reqwest::Client::new();
-    // let response = client
-    //     .get("https://api.spotify.com/v1/search")
-    //     .header(AUTHORIZATION, "Bearer BQDCsPOOXDCKYFuj1TbMJAuLwG7_ei5je_KsGC_36-I6qE_r7i4bgHWqOiL6jEIhsuncAMTz5ArRBVy7OcgigMvouH2cP-jKVSfWanFUMbyRlp68szpy57G_nYOXOLsXfNWX_KMNhU8")
-    //     .header(CONTENT_TYPE, "application/json")
-    //     .header(ACCEPT, "application/json")
-    //     .send()
-    //     .await
-    //     .unwrap()
-    //     .text()
-    //     .await;
-
-    // println!("Success! {:#?}", response);
-    let resp = get_token().await;
-    match resp {
+    // Get access token
+    let tok_resp = get_token().await;
+    let auth_token = match tok_resp {
         Ok(x) => {
             let token: Token = serde_json::from_str(&x).unwrap();
-            let bearer_token = token.access_token;
-            println!("{}", bearer_token);
+            token.access_token
         }
-        Err(e) => eprintln!("{}", e),
+        Err(_) => String::from("token error"),
     };
+
+    println!("{}", auth_token);
+
+    // Get the data
+    let url = format!(
+        "https://api.spotify.com/v1/search?q={query}&type=track,artist",
+        query = "Megadeth"
+    );
+    let client = reqwest::Client::new();
+    let response = client
+        .get(url)
+        .header(AUTHORIZATION, format!("Bearer {}", auth_token))
+        .header(CONTENT_TYPE, "application/json")
+        .header(ACCEPT, "application/json")
+        .send()
+        .await
+        .unwrap();
+
+    match response.status() {
+        reqwest::StatusCode::OK => {
+            println!("{:#?}", response);
+        }
+        _ => {
+            panic!("Something unexpected happened");
+        }
+    }
 }
