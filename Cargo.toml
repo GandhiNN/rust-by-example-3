@@ -14,5 +14,6 @@ reqwest = "0.12.15"
 tokio = "1.44.1"
 futures = "0.3.31"
 base64 = "0.22.1"
+toml = "0.8.20"
 
 [dependencies]
