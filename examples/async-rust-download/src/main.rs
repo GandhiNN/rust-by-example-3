@@ -1,14 +1,15 @@
-use std::collections::HashMap;
+// use std::collections::HashMap;
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let client = set_client();
-    let resp = client
-        .get("https://httpbin.org/ip")
-        .send()
-        .await?
-        .json::<HashMap<String, String>>()
-        .await?;
+    // let resp = client
+    //     .get("https://link.testfile.org/500MB")
+    //     .send()
+    //     .await?
+    //     .json::<HashMap<String, String>>()
+    //     .await?;
+    let resp = client.get("https://link.testfile.org/500MB").send().await?;
     println!("{:#?}", resp);
     Ok(())
 }
