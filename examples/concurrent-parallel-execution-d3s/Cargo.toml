@@ -1,0 +1,7 @@
+[package]
+name = "concurrent-parallel-execution-d3s"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+tokio = {workspace = true, features = ["full"]}

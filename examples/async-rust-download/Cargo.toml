@@ -1,0 +1,8 @@
+[package]
+name = "async-rust-download"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+tokio = {workspace = true, features = ["full"]}
+reqwest = {workspace = true, features = ["json"]}
