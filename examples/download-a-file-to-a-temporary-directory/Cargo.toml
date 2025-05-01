@@ -1,0 +1,10 @@
+[package]
+name = "download-a-file-to-a-temporary-directory"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+error-chain = {workspace = true}
+tokio = {workspace = true, features = ["full"]}
+tempfile = {workspace = true}
+reqwest = {workspace = true}
