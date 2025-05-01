@@ -16,6 +16,8 @@ futures = "0.3.31"
 base64 = "0.22.1"
 toml = "0.8.20"
 rusqlite = "0.34.0"
+error-chain = "0.12.4"
 
 [dependencies]
+error-chain = "0.12.4"
 rusqlite = "0.34.0"
