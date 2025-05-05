@@ -33,6 +33,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "async-with-multithreading"
+version = "0.1.0"
+dependencies = [
+ "tokio",
+]
+
+[[package]]
 name = "atomic-waker"
 version = "1.1.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
