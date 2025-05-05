@@ -1,0 +1,8 @@
+[package]
+name = "tokio-and-std-sleep-2"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+tokio = {workspace = true, features = ["full"]}
+chrono = {workspace = true}

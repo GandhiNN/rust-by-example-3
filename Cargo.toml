@@ -19,6 +19,7 @@ rusqlite = "0.34.0"
 error-chain = "0.12.4"
 tempfile = "3.19.1"
 indicatif = "0.17.11"
+chrono = "0.4.1"
 
 [dependencies]
 error-chain = "0.12.4"
