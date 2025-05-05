@@ -1,0 +1,9 @@
+[package]
+name = "tokio-and-sleep-joinhandles-all"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+tokio = {workspace = true, features = ["full"]}
+chrono = {workspace = true}
+futures = {workspace = true}
