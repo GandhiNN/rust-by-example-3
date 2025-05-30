@@ -1631,6 +1631,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "tokio-semaphore-2"
+version = "0.1.0"
+dependencies = [
+ "futures",
+ "reqwest",
+ "tokio",
+]
+
+[[package]]
 name = "tokio-util"
 version = "0.7.14"
 source = "registry+https://github.com/rust-lang/crates.io-index"
