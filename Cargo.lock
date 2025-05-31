@@ -40,6 +40,14 @@ dependencies = [
 ]
 
 [[package]]
+name = "async-join-all"
+version = "0.1.0"
+dependencies = [
+ "futures",
+ "tokio",
+]
+
+[[package]]
 name = "async-rust-download"
 version = "0.1.0"
 dependencies = [
