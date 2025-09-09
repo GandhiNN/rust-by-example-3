@@ -850,7 +850,15 @@ name = "macro-rules-1"
 version = "0.1.0"
 
 [[package]]
+name = "macro-rules-basic"
+version = "0.1.0"
+
+[[package]]
 name = "macro-rules-designators"
+version = "0.1.0"
+
+[[package]]
+name = "macro-rules-dry"
 version = "0.1.0"
 
 [[package]]
