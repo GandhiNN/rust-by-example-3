@@ -84,6 +84,28 @@ macro_rules! ok_or_return {
     }
 }
 
+// Few macros need to be grouped into a single macro.
+// In these cases, internal macro rules are used.
+// It helps to manipulate the macro inputs and write
+// clean TT munchers.
+macro_rules! ok_or_return_internal {
+    // Internal rule
+    (@error $a:ident, $($b:tt)*) => {
+        {
+            match $a($($b)*) {
+                Ok(value) => value,
+                Err(err) => {
+                    return Err(err);
+                }
+            }
+        }
+    };
+    // Public rule can be called by the user.
+    ($a:ident($($b:tt)*)) => {
+        ok_or_return_internal!(@error $a,$($b)*)
+    };
+}
+
 fn some_work(i: i64, j: i64) -> Result<(i64, i64), String> {
     if i + j > 2 {
         Ok((i, j))
@@ -118,6 +140,12 @@ fn main() -> Result<(), String> {
     let b = ok_or_return!(some_work(3, 4));
     println!("{:?}", a);
     println!("{:?}", b);
+
+    // Call the macro ok_or_return_internal
+    println!("ok_or_return_internal");
+    // instead of round bracket, curly brackets can also be used
+    ok_or_return_internal!(some_work(1, 0));
+    ok_or_return_internal! {some_work(1,4)};
 
     Ok(())
 }
