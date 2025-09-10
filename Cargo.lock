@@ -862,6 +862,10 @@ name = "macro-rules-dry"
 version = "0.1.0"
 
 [[package]]
+name = "macro-rules-earthly"
+version = "0.1.0"
+
+[[package]]
 name = "macro-rules-overloads"
 version = "0.1.0"
 
